@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sri Maha Lakshmi Import And Exports</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f8f9f4;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* TOP BAR */
+
+        .top-bar {
+            background: #1B5E20;
+            color: #fff;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
+        .top-bar span {
+            margin-right: 20px;
+        }
+
+        .top-bar a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: #fcf8f8;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #E53935;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide:nth-child(1) {
+            background-image: url('images/slider1.jpg');
+        }
+
+        .slide:nth-child(2) {
+            background-image: url('images/slider2.jpg');
+        }
+
+        .slide:nth-child(3) {
+            background-image: url('images/slider3.jpg');
+        }
+
+        .slide:nth-child(4) {
+            background-image: url('images/slider4.jpg');
+        }
+
+        .slide:nth-child(5) {
+            background-image: url('images/slider5.jpg');
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            color: #fff;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .4s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #E53935;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #c62828;
+            transform: translateY(-5px);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #1B5E20;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-5px);
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            opacity: .5;
+        }
+
+        .dot.active {
+            opacity: 1;
+            background: #E53935;
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: #1B5E20;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        /* ABOUT */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .15);
+        }
+
+        .about-content h3 {
+            font-size: 35px;
+            margin-bottom: 20px;
+            color: #1B5E20;
+        }
+
+        .about-content p {
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+            font-weight: 600;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:991px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media(max-width:600px) {
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .top-bar {
+                font-size: 12px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        .gradient-divider {
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg,
+                    #1B5E20,
+                    #43A047,
+                    #FFB300,
+                    #1B5E20);
+            border-radius: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* PRODUCTS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            position: relative;
+            background: #fff;
+            border-radius: 25px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all .5s ease;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .12),
+                0 20px 50px rgba(0, 0, 0, .08);
+        }
+
+        .product-card:hover {
+            transform:
+                rotateX(8deg) rotateY(-8deg) translateY(-15px);
+
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, .2),
+                0 15px 30px rgba(0, 0, 0, .15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform .7s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .product-content {
+            padding: 25px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .product-content h3 {
+            color: #1B5E20;
+            margin-bottom: 10px;
+        }
+
+        .product-content p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .product-content a {
+            display: inline-block;
+            padding: 10px 22px;
+            background: #E53935;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            position: relative;
+            z-index: 11;
+        }
+
+        .why-us {
+            position: relative;
+            padding: 120px 8%;
+            background: url('https://i.pinimg.com/736x/ff/fc/7e/fffc7ec59e1cef1af44c4855319b887a.jpg') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .why-us::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        .why-us .section-title,
+        .why-us .why-grid {
+            position: relative;
+            z-index: 2;
+        }
+
+        .why-us .section-title h2 {
+            color: #fff;
+        }
+
+        .why-us .section-title p {
+            color: #ddd;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .why-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 25px;
+            text-align: center;
+            border-radius: 20px;
+            transition: .4s;
+            color: #fff;
+        }
+
+        .why-box:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .why-box i {
+            font-size: 45px;
+            color: #FFB300;
+            margin-bottom: 15px;
+        }
+
+        .why-box h3 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .why-box p {
+            color: #e5e5e5;
+            line-height: 1.7;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            background: #1B5E20;
+            color: #fff;
+        }
+
+        .footer-content {
+            padding: 50px 7%;
+            text-align: center;
+        }
+
+
+        .footer-links {
+            margin: 30px 0;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer-links a:hover {
+            color: #FFB300;
+        }
+
+        .footer-contact p {
+            margin: 10px 0;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            color: black;
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp-btn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:900px) {
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 10px 0;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+
+        <div>
+            <span><i class="fa-solid fa-phone"></i> <a href="tel:9944560545">9944560545</a></span>
+            <span><i class="fa-solid fa-phone"></i> <a href="tel:9791916494">9791916494</a></span>
+        </div>
+
+        <div>
+            <span><i class="fa-solid fa-envelope"></i> <a
+                    href="mailto:murugansriram73@gmail.com">murugansriram73@gmail.com</a></span>
+        </div>
+
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo">
+                <img src="images/logo.png" alt="HI MANAWAR FARMS Logo">
+            </div>
+
+        </div>
+
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+
+        <div class="overlay">
+
+            <div class="hero-content">
+
+                <h1>Delivering India's Finest Agricultural Products to the World</h1>
+
+                <p>
+                    Sri Maha Lakshmi Import And Exports is a trusted exporter of premium-quality fresh fruits,
+                    vegetables, spices, nuts, and natural food products from India.
+                </p>
+
+                <div class="hero-btns">
+
+                    <a href="products.html" class="btn btn-primary">
+                        Explore Products
+                    </a>
+
+                    <a href="contact.html" class="btn btn-secondary">
+                        Contact Us
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="slider-controls">
+
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+
+        <div class="section-title">
+
+            <h2>About Us</h2>
+
+            <p>
+                Growing Quality, Delivering Trust Across the Globe
+            </p>
+
+        </div>
+
+        <div class="about">
+
+            <img src="images/abt.png" alt="About Us">
+            <div class="about-content">
+
+                <h3>Sri Maha Lakshmi Import And Exports</h3>
+
+                <p>
+                    Sri Maha Lakshmi Import And Exports is a leading exporter and supplier of premium-quality fresh
+                    fruits, vegetables, coconuts, spices, nuts, and agricultural products from India. Based in
+                    Dharmapuri, Tamil Nadu, we are committed to delivering farm-fresh produce that meets international
+                    quality standards while ensuring complete customer satisfaction.
+                </p>
+
+                <p>
+                    With strong relationships with local farmers and trusted suppliers, we carefully source every
+                    product from fertile agricultural regions. Our experienced team follows strict quality control
+                    measures, hygienic handling practices, and export-standard packaging to preserve freshness and
+                    nutritional value throughout the supply chain.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">✓ Fresh Quality</div>
+                    <div class="feature">✓ Quality Assurance</div>
+                    <div class="feature">✓ Hygienic Processing</div>
+                    <div class="feature">✓ Bulk Supply</div>
+                    <div class="feature">✓ Timely Delivery</div>
+                    <div class="feature">✓ Export Quality</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <div class="gradient-divider"></div>
+    <section id="products" class="section">
+
+        <div class="section-title">
+            <h2>Our Products</h2>
+            <p>
+                At Sri Maha Lakshmi Import And Exports, we specialize in exporting a wide range of premium-quality fresh
+                fruits, vegetables, spices, nuts, natural sweeteners, and agricultural products sourced directly from
+                trusted farms across India. Every product is carefully selected, hygienically packed, and handled
+                according to international quality standards to ensure maximum freshness, taste, and nutritional value.
+            </p>
+        </div>
+
+        <div class="products-grid">
+
+            <div class="product-card">
+                <img src="images/Capsicum.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Capsicum</h3>
+                    <p>Fresh, colorful capsicums carefully selected for premium quality.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Beans.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Beans</h3>
+                    <p>Farm-fresh green beans with excellent taste, rich nutrients.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Beetroot.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Beetroot</h3>
+                    <p>Naturally grown beetroots with vibrant color, rich flavor, and high nutritional value.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Chilli.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Chilli</h3>
+                    <p>Premium fresh chillies with vibrant color, natural spice, and export-grade quality.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Turkey Berry.jpg" alt="">
+                <div class="product-content">
+                    <h3>Turkey Berry</h3>
+                    <p>Fresh turkey berries sourced from trusted farms, ideal for culinary and medicinal uses.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Bitter Gourd.jpg" alt="">
+                <div class="product-content">
+                    <h3>Bitter Gourd</h3>
+                    <p>Fresh bitter gourds carefully harvested for freshness, texture, and nutritional benefits.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Bottle Gourd.jpg" alt="">
+                <div class="product-content">
+                    <h3>Bottle Gourd</h3>
+                    <p>Tender bottle gourds with natural freshness, perfect for domestic and international markets.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Pumpkin.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Pumpkin</h3>
+                    <p>High-quality pumpkins known for their rich flavor, long shelf life, and freshness.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Cucumber.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Cucumber</h3>
+                    <p>Fresh, juicy cucumbers with crisp texture and excellent export quality.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Ladies Finger (Okra).jpeg" alt="">
+                <div class="product-content">
+                    <h3>Ladies Finger (Okra)</h3>
+                    <p>Premium fresh okra with tender pods, vibrant color, and superior freshness.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images//Carrot.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Carrot</h3>
+                    <p>Naturally sweet carrots with bright color, crunchy texture, and high nutritional value.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="images/Cabbage.jpeg" alt="">
+                <div class="product-content">
+                    <h3>Cabbage</h3>
+                    <p>Crisp, farm-fresh cabbages packed hygienically to preserve quality and freshness.</p>
+                    <a href="products.html" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <style>
+        #products {
+            position: relative;
+            padding: 100px 8%;
+            overflow: hidden;
+            background: linear-gradient(135deg,
+                    #F1F8E9,
+                    #E8F5E9,
+                    #FFFDE7,
+                    #FFF3E0);
+        }
+
+        #products::before {
+            content: "🌶️ 🧄 🧅 🌾 🌿";
+            position: absolute;
+            top: 4%;
+            left: 5%;
+            font-size: 80px;
+            opacity: 0.09;
+            letter-spacing: 60px;
+            animation: floatIcons 15s linear infinite;
+        }
+
+        #products::after {
+            content: "🍅 🥣 🌶️ 🧄 🍛";
+            position: absolute;
+            bottom: 1%;
+            right: 5%;
+            font-size: 70px;
+            opacity: 0.5;
+            letter-spacing: 40px;
+            animation: floatIconsReverse 18s linear infinite;
+        }
+
+        @keyframes floatIcons {
+            0% {
+                transform: translateX(-50px);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                transform: translateX(-50px);
+            }
+        }
+
+        @keyframes floatIconsReverse {
+            0% {
+                transform: translateX(50px);
+            }
+
+            50% {
+                transform: translateX(-50px);
+            }
+
+            100% {
+                transform: translateX(50px);
+            }
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: linear-gradient(135deg,
+                    #1B5E20,
+                    #43A047,
+                    #FFB300);
+
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+    </style>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-us">
+
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+        </div>
+
+        <div class="why-grid">
+
+            <div class="why-box">
+                <i class="fas fa-leaf"></i>
+                <h3>Fresh Quality</h3>
+                <p>Premium-quality fresh fruits, vegetables, spices, nuts, natural sweeteners, and agricultural
+                    products.</p>
+            </div>
+
+            <div class="why-box">
+                <i class="fas fa-award"></i>
+                <h3>Quality Assurance</h3>
+                <p>Ensuring premium quality through rigorous inspection, hygienic handling, and international export
+                    standards.</p>
+            </div>
+
+            <div class="why-box">
+                <i class="fas fa-industry"></i>
+                <h3>Modern Processing</h3>
+                <p>Advanced processing techniques ensure maximum freshness, hygiene, and consistent quality in every
+                    product.</p>
+            </div>
+
+            <div class="why-box">
+                <i class="fas fa-globe"></i>
+                <h3>Export Ready</h3>
+                <p>Prepared for global markets with export-quality standards, secure packaging, and reliable logistics.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!--gallery-->
+    <section id="gallery" class="product-gallery">
+
+        <div class="section-title">
+            <h2>Featured Products</h2>
+        </div>
+
+        <div class="gallery-slider">
+
+            <div class="gallery-track">
+
+                <div class="gallery-card">
+                    <img src="images/Onion.jpg">
+                    <div class="gallery-overlay">
+                        <h3>Onion</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Tomato.jpg">
+                    <div class="gallery-overlay">
+                        <h3>Tomato</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Potato.jpeg">
+                    <div class="gallery-overlay">
+                        <h3>Potato</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images//Garlic.jpg">
+                    <div class="gallery-overlay">
+                        <h3>Garlic</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Ginger.jpg">
+                    <div class="gallery-overlay">
+                        <h3>Ginger</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Small Onion.jpg">
+                    <div class="gallery-overlay">
+                        <h3>Small Onion</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Tindora (Ivy Gourd).jpeg">
+                    <div class="gallery-overlay">
+                        <h3>Tindora (Ivy Gourd)</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Lemon.jpeg">
+                    <div class="gallery-overlay">
+                        <h3>Lemon</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Mushroom.jpeg">
+                    <div class="gallery-overlay">
+                        <h3>Mushroom</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Tamarind.jpeg">
+                    <div class="gallery-overlay">
+                        <h3>Tamarind</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="images/Coconut.jpeg">
+                    <div class="gallery-overlay">
+                        <h3>Coconut</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <style>
+        .product-gallery {
+            padding: 100px 5%;
+            background: linear-gradient(135deg,
+                    #F1F8E9,
+                    #E8F5E9,
+                    #FFFDE7,
+                    #FFF3E0);
+            overflow: hidden;
+        }
+
+        .gallery-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 30px;
+            animation: slideGallery 35s linear infinite;
+            width: max-content;
+        }
+
+        .gallery-card {
+            width: 320px;
+            height: 420px;
+            flex-shrink: 0;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: .2s;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, .15);
+        }
+
+        .gallery-card:hover {
+            transform:
+                rotateY(10deg) rotateX(5deg) translateY(-15px);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .2s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(transparent,
+                    rgba(0, 0, 0, .95));
+        }
+
+        .gallery-overlay h3 {
+            color: #fff;
+            font-size: 22px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        @keyframes slideGallery {
+
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+
+        }
+    </style>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+
+        <div class="floating-bg">
+            <span> <img src="images/salad.png" alt="Floating Image"> </span>
+            <span><img src="images/healthy-food.png" alt="Floating Image"></span>
+            <span><img src="images/onion.png" alt="Floating Image"></span>
+            <span></span>
+            <span><img src="images/foodie.png" alt="Floating Image"></span>
+            <span><img src="images/healthy-food.png" alt="Floating Image"></span>
+            <span></span>
+            <span><img src="images/onion.png" alt="Floating Image"></span>
+        </div>
+
+        <div class="section-titles">
+            <h2>Contact Us</h2>
+            <p>Let's Build Long-Term Business Partnerships</p>
+        </div>
+
+        <div class="contact-container">
+
+            <div class="contact-info">
+
+                <h3>Sri Maha Lakshmi Import And Exports</h3>
+
+                <p>
+                    Manufacturer & Supplier of premium-quality fresh fruits, vegetables, spices, nuts, and natural food
+                    products from India.
+                </p>
+
+                <div class="contact-item">
+                    📞 9944560545 / 9791916494
+                </div>
+
+                <div class="contact-item">
+                    ✉ murugansriram73@gmail.com
+                </div>
+
+                <div class="contact-item">
+                    📍 5/950, Papparapatti Road, Moongappatti Vill, Erranahalli po, Palacode,Dharmapuri Dt, Dharmapuri,
+                    DHARMAPURI, TAMIL NADU, 636808
+                </div>
+
+            </div>
+
+            <div class="contact-form">
+
+                <form>
+
+                    <input type="text" name="name" placeholder="Your Name" required>
+
+                    <input type="email" name="email" placeholder="Your Email" required>
+
+                    <input type="text" name="phone" placeholder="Phone Number" required>
+
+                    <textarea rows="5" name="message" placeholder="Your Message" required></textarea>
+
+                    <button type="submit">Send Inquiry</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+    <style>
+        .contact-section {
+            position: relative;
+            padding: 100px 8%;
+            overflow: hidden;
+
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    #bbf578ef,
+                    #E8F5E9,
+                    #83cf8a,
+                    #bcf1a7);
+            z-index: 1;
+        }
+
+        /* Floating Background */
+
+        .floating-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+        }
+
+        .floating-bg span {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(218, 233, 221, 0.507);
+            backdrop-filter: blur(10px);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .floating-bg span:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 5%;
+            left: 5%;
+        }
+
+        .floating-bg span:nth-child(2) {
+            width: 50px;
+            height: 50px;
+            top: 15%;
+            right: 10%;
+        }
+
+        .floating-bg span:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            left: 10%;
+        }
+
+        .floating-bg span:nth-child(4) {
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            right: 15%;
+        }
+
+        .floating-bg span:nth-child(5) {
+            width: 140px;
+            height: 140px;
+            bottom: 5%;
+            left: 5%;
+        }
+
+        .floating-bg span:nth-child(6) {
+            width: 80px;
+            height: 80px;
+            bottom: 15%;
+            right: 8%;
+        }
+
+        .floating-bg span:nth-child(7) {
+            width: 130px;
+            height: 130px;
+            top: 20%;
+            left: 45%;
+        }
+
+        .floating-bg span:nth-child(8) {
+            width: 170px;
+            height: 170px;
+            bottom: 10%;
+            right: 35%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-40px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Content */
+
+        .section-titles,
+        .contact-container {
+            position: relative;
+            z-index: 3;
+        }
+
+        .section-titles {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-titles h2 {
+            color: #1B5E20;
+            font-size: 50px;
+        }
+
+        .section-titles p {
+            color: balck;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: rgba(0, 0, 0, 0.781);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 40px;
+            color: #fff;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .contact-item {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #ddd;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            background: #FFB300;
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-3px);
+            background: #ffc107;
+        }
+
+        /* Mobile */
+
+        @media(max-width:900px) {
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 35px;
+            }
+
+        }
+    </style>
+
+    <!--FOOTER-->
+    <footer>
+
+        <div class="footer-content">
+
+            <h2>Sri Maha Lakshmi Import And Exports</h2>
+
+            <p>
+               Fresh Produce • Premium Quality • Global Export Solutions
+            </p>
+
+            <div class="footer-links">
+
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="products.html">Products</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Sri Maha Lakshmi Import And Exports. All Rights Reserved.
+        </div>
+
+    </footer>
+
+    <!-- WHATSAPP BUTTON-->
+
+    <a href="https://wa.me/9944560545" class="whatsapp-btn" target="_blank">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+    <!--slider-->
+    <script>
+
+        let slides = document.querySelectorAll('.slide');
+        let dots = document.querySelectorAll('.dot');
+
+        let current = 0;
+
+        function showSlide(index) {
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+
+        }
+
+        function nextSlide() {
+
+            current++;
+
+            if (current >= slides.length) {
+                current = 0;
+            }
+
+            showSlide(current);
+
+        }
+
+        setInterval(nextSlide, 4000);
+
+        dots.forEach((dot, index) => {
+
+            dot.addEventListener('click', () => {
+
+                current = index;
+                showSlide(current);
+
+            });
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
